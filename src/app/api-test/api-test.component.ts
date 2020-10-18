@@ -14,43 +14,43 @@ interface langObject {
 })
 export class ApiTestComponent implements OnInit {
 
-  issues: string;
+  issues: any;
   issuesConfig: string;
   issuesError: string;
 
-  issueInfo: string;
+  issueInfo: any;
   issueInfoConfig: string;
   issueInfoError: string;
   issueId: string = "237";
 
-  diagnosis: string;
+  diagnosis: any;
   diagnosisConfig: string;
   diagnosisError: string;
 
-  specialisations: string;
+  specialisations: any;
   specialisationsConfig: string;
   specialisationsError: string;
 
-  proposedSymptoms: string;
+  proposedSymptoms: any;
   proposedSymptomsConfig: string;
   proposedSymptomsError: string;
 
-  bodyLocations: string;
+  bodyLocations: any;
   bodyLocationsConfig: string;
   bodyLocationsError: string;
 
 
-  bodySublocations: string;
+  bodySublocations: any;
   bodySublocationsConfig: string;
   bodySublocationsError: string;
   bodyLocationId: number = 16;
 
-  bodySublocationSymptoms: string;
+  bodySublocationSymptoms: any;
   bodySublocationSymptomsConfig: string;
   bodySublocationSymptomsError: string;
   bodySublocationId: number = 0;
 
-  redFlagText: string;
+  redFlagText: any;
   redFlagTextConfig: string;
   redFlagTextError: string;
   symptomId: number = 238;
@@ -104,7 +104,6 @@ export class ApiTestComponent implements OnInit {
     this.apiService.loadSymptoms()
       .subscribe(
         data => {
-          console.log(data)
           if (this.config.getFormat() == "json") {
             this.symptoms = data != '' ? data : 'No results found'
           }
@@ -136,9 +135,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.issues = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.issues = data != '' ? data : 'No results found'
           else
-            this.issues = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.issues = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -168,9 +167,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.issueInfo = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.issueInfo = data != '' ? data : 'No results found'
           else
-            this.issueInfo = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.issueInfo = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -200,9 +199,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.diagnosis = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.diagnosis = data != '' ? data : 'No results found'
           else
-            this.diagnosis = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.diagnosis = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -232,9 +231,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.specialisations = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.specialisations = data != '' ? data : 'No results found'
           else
-            this.specialisations = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.specialisations = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -264,9 +263,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.proposedSymptoms = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.proposedSymptoms = data != '' ? data : 'No results found'
           else
-            this.proposedSymptoms = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.proposedSymptoms = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -296,9 +295,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.bodyLocations = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.bodyLocations = data != '' ? data : 'No results found'
           else
-            this.bodyLocations = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.bodyLocations = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -328,9 +327,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.bodySublocations = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.bodySublocations = data != '' ? data : 'No results found'
           else
-            this.bodySublocations = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.bodySublocations = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -360,9 +359,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.bodySublocationSymptoms = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.bodySublocationSymptoms = data != '' ? data : 'No results found'
           else
-            this.bodySublocationSymptoms = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.bodySublocationSymptoms = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
@@ -392,9 +391,9 @@ export class ApiTestComponent implements OnInit {
       .subscribe(
         data => {
           if (this.config.getFormat() == "json")
-            this.redFlagText = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
+            this.redFlagText = data != '' ? data : 'No results found'
           else
-            this.redFlagText = data["_body"] != '' ? data["_body"] : 'No results found'
+            this.redFlagText = data != '' ? data : 'No results found'
           let demo_Config = this.config.getConfig();
           demo_Config["url"] = data["url"];
           demo_Config["URL"] = data["url"];
