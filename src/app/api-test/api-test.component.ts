@@ -4,10 +4,9 @@ import { DiagnosisApiService } from '../diagnosis-api.service';
 
 
 interface langObject {
-  name:string;
-  value:string;
+  name: string;
+  value: string;
 }
-
 @Component({
   selector: 'app-api-test',
   templateUrl: './api-test.component.html',
@@ -65,7 +64,7 @@ export class ApiTestComponent implements OnInit {
     value: 'man'
   }
 
-  symptoms: string;
+  symptoms: any;
   symptomsConfig: string;
   symptomsError: string;
   lang: langObject;
@@ -105,11 +104,13 @@ export class ApiTestComponent implements OnInit {
     this.apiService.loadSymptoms()
       .subscribe(
         data => {
-          if (this.config.getFormat() == "json")
-            this.symptoms = JSON.parse(data["_body"]) != '' ? JSON.parse(data["_body"]) : 'No results found'
-          else
-            this.symptoms = data["_body"] != '' ? data["_body"] : 'No results found'
-
+          console.log(data)
+          if (this.config.getFormat() == "json") {
+            this.symptoms = data != '' ? data : 'No results found'
+          }
+          else {
+            this.symptoms = data != '' ? data : 'No results found'
+          }
           this.symptomsConfig = this.config.getConfig();;
           this.symptomsError = " ";
         },
