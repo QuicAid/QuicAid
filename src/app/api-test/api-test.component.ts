@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../config.service';
 import { DiagnosisApiService } from '../diagnosis-api.service';
+import {AuthService} from '../auth.service';
 
 
 interface langObject {
@@ -73,7 +74,7 @@ export class ApiTestComponent implements OnInit {
   languages: langObject[] = [{ value: "en-gb", name: "en-gb" }, { value: "de-ch", name: "de-ch" }, { value: "fr-fr", name: "fr-fr" }, { value: "it-it", name: "it-it" }, { value: "es-es", name: "es-es" }, { value: "ar-sa", name: "ar-sa" }, { value: "ru-ru", name: "ru-ru" }, { value: "tr-tr", name: "tr-tr" }, { value: "sr-sp", name: "sr-sp" }, { value: "sk-sk", name: "sk-sk" }]
   token: string;
 
-  constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
+  constructor(public apiService: DiagnosisApiService, public config: ConfigService, public authService: AuthService) {
     this.config.setLanguage("en-gb");
     this.config.setFormat("json");
   }
@@ -100,6 +101,14 @@ export class ApiTestComponent implements OnInit {
   }
 
   loadSymptoms() {
+    this.authService.getToken()
+    .subscribe(data => {
+      console.log('success:' ,data);
+    },
+    error => {
+      console.log('error:', error);
+    })
+
     this.symptoms = 'loading data from web service...';
     this.apiService.loadSymptoms()
       .subscribe(
@@ -110,7 +119,7 @@ export class ApiTestComponent implements OnInit {
           else {
             this.symptoms = data != '' ? data : 'No results found'
           }
-          this.symptomsConfig = this.config.getConfig();;
+          this.symptomsConfig = this.config.getConfig();
           this.symptomsError = " ";
         },
         error => {
