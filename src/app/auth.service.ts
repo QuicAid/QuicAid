@@ -22,7 +22,6 @@ export class AuthService {
     this.computedHash = CryptoJS.HmacMD5(this.authURL, this.secretKey);
     this.computedHashString = this.computedHash.toString(CryptoJS.enc.Base64);
     this.authArgs = "Bearer " + this.apiKey + ":" + this.computedHashString;
-    console.log(this.authArgs);
     let headers = new HttpHeaders().set("Authorization", this.authArgs);
     return this.http.post(this.authURL, "", { headers });
   }
