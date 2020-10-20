@@ -71,12 +71,12 @@ export class ApiTestComponent implements OnInit {
   format: any;
   formats: any[] = [{ value: "json", name: "json" }, { value: "xml", name: "xml" }]
   languages: langObject[] = [{ value: "en-gb", name: "en-gb" }, { value: "de-ch", name: "de-ch" }, { value: "fr-fr", name: "fr-fr" }, { value: "it-it", name: "it-it" }, { value: "es-es", name: "es-es" }, { value: "ar-sa", name: "ar-sa" }, { value: "ru-ru", name: "ru-ru" }, { value: "tr-tr", name: "tr-tr" }, { value: "sr-sp", name: "sr-sp" }, { value: "sk-sk", name: "sk-sk" }]
-  token: any;
+
 
   constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
     this.config.setLanguage("en-gb");
     this.config.setFormat("json");
-    this.token = this.config.getToken();
+    this.config.getToken();
   }
 
   changeLanguage(value): void {

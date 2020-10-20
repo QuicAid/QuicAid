@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { DiagnosisApiService} from '../diagnosis-api.service';
+import { ConfigService } from '../config.service';
+import { DiagnosisApiService } from '../diagnosis-api.service';
 
 @Component({
   selector: 'app-symptoms',
@@ -10,10 +10,32 @@ import { DiagnosisApiService} from '../diagnosis-api.service';
 export class SymptomsComponent implements OnInit {
 
   symptoms: any;
+  selectedSymptom: any;
 
-  constructor() { }
+  constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
+    this.config.getToken();
+    try {
+      this.apiService.loadSymptoms()
+        .subscribe(data => {
+          console.log(data);
+          this.symptoms = data;
+        },
+          error => {
+            console.log('error:', error);
+          })
 
-  getDiagnosis() { }
+    } catch (e) {
+      console.info('could not get symptoms');
+    }
+  }
+
+  saveSymptom(value): void {
+    this.selectedSymptom = value;
+    console.log(this.selectedSymptom);
+  }
+  getDiagnosis() {
+
+  }
   ngOnInit(): void {
   }
 
