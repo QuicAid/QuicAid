@@ -1,1 +1,22 @@
-<p>symptoms works!</p>
+<div class="container">
+<div class="row border border-primary my-5 p-3">
+  <div class="col-12 col-md-6">
+    <h2> Select issue from list</h2>
+
+    <form class="my-3">
+      <div class="form-group">
+        <label for="symptomsSelect">What bothers you?</label>
+        <select class="form-control" id="symptomsSelect">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="getDiagnosis()">Get Diagnosis</button>
+    </form>
+
+  </div>
+</div>
+</div>

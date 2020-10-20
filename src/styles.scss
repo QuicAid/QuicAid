@@ -2,3 +2,11 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.form-control {
+  border: 1px solid #cad1d8 !important ;
+}
+.form-control:focus {
+  border: 1px solid #007bff !important;
+  box-shadow: none !important;
+}
