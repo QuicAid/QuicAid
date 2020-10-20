@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { ApiTestComponent } from './api-test/api-test.component';
 import { ResultsComponent } from './results/results.component';
 import { HomeComponent } from './home/home.component';
+import { SymptomsComponent } from './symptoms/symptoms.component';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'test', component: ApiTestComponent },
   { path: 'results', component: ResultsComponent },
+  { path: 'symptoms', component: SymptomsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
