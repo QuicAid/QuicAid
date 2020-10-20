@@ -11,9 +11,17 @@ export class SymptomsComponent implements OnInit {
 
   symptoms: any;
   selectedSymptom: any;
+  diagnosis: any;
+  yearOfBirth: number;
+  gender = {
+    value: ''
+  }
 
   constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
+    this.config.setLanguage("en-gb");
+    this.config.setFormat("json");
     this.config.getToken();
+
     try {
       this.apiService.loadSymptoms()
         .subscribe(data => {
@@ -29,13 +37,21 @@ export class SymptomsComponent implements OnInit {
     }
   }
 
-  saveSymptom(value): void {
-    this.selectedSymptom = value;
+  saveSymptom(symptom): void {
+    this.selectedSymptom = symptom;
     console.log(this.selectedSymptom);
   }
-  getDiagnosis() {
 
+
+  getDiagnosis() {
+    this.apiService.loadDiagnosis(this.selectedSymptom, this.gender, this.yearOfBirth).subscribe(
+      data => {
+        this.diagnosis = data;
+        console.log(data);
+      }
+    )
   }
+
   ngOnInit(): void {
   }
 

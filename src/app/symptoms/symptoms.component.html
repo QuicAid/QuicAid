@@ -1,19 +1,42 @@
 <div class="container">
-<div class="row border border-primary my-5 p-3">
-  <div class="col-12 col-md-6">
-    <h2> Symptom Checker</h2>
+  <div class="row border border-primary my-5 p-3">
+    <div class="col-12 col-md-6">
+      <h2> Symptom Checker</h2>
 
-    <form class="my-3">
-      <div class="form-group">
-        <label for="sym_select">What bothers you?</label>
-        <select class="form-control" #sym_select (change)="saveSymptom(sym_select.value)">
-          <option>Pick from list</option>
-          <option *ngFor="let symptom of symptoms" [value]="symptom.ID">{{symptom.Name}}</option>
-        </select>
+      <form class="my-3">
+        <div class="form-group">
+          <label for="sym_select">What bothers you?</label>
+          <select class="form-control" #sym_select (change)="saveSymptom(sym_select.value)">
+            <option>Choose From list</option>
+            <option *ngFor="let symptom of symptoms" [value]="symptom.ID">{{symptom.Name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="year">Year of birth</label>
+          <input class="form-control" type='number' [(ngModel)]='yearOfBirth' name="yearOfBirth" />
+        </div>
+        <div class="form-group form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="female" [(ngModel)]="gender.value" value="female"
+            name="female">
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="form-group form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="male" [(ngModel)]="gender.value" value="male" name="male">
+          <label class="form-check-label" for="male"> Male</label>
+        </div>
+
+        <button class="btn btn-primary d-block" (click)="getDiagnosis()">Get Diagnosis</button>
+      </form>
+
+    </div>
+
+    <div class="col-12 col-md-6 border border-success">
+      <h3 class="mb-5">Diagnosis</h3>
+      <div *ngFor="let diag of diagnosis">
+        <h5>{{diag.Issue.Name}}</h5>
+        <p>{{diag.Issue.IcdName}}</p>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="getDiagnosis()">Get Diagnosis</button>
-    </form>
-
+    </div>
   </div>
-</div>
 </div>
