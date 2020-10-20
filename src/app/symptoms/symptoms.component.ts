@@ -8,7 +8,8 @@ import { DiagnosisApiService } from '../diagnosis-api.service';
   styleUrls: ['./symptoms.component.scss']
 })
 export class SymptomsComponent implements OnInit {
-
+  showChecker:boolean = true;
+  showDiagnosis: boolean = false;
   symptoms: any;
   selectedSymptom: any;
   diagnosis: any;
@@ -46,8 +47,16 @@ export class SymptomsComponent implements OnInit {
   getDiagnosis() {
     this.apiService.loadDiagnosis(this.selectedSymptom, this.gender, this.yearOfBirth).subscribe(
       data => {
-        this.diagnosis = data;
+
+        if(data) {
         console.log(data);
+        this.diagnosis = data;
+        this.showChecker = false;
+        this.showDiagnosis = true;
+        }
+        else {
+          console.error("Failed to get Diagnosis")
+        }
       }
     )
   }

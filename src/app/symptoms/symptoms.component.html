@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row border border-primary my-5 p-3">
-    <div class="col-12 col-md-6">
+  <div class="row my-5 p-3">
+    <div *ngIf="showChecker" class="col-12 col-md-6 mx-auto">
       <h2> Symptom Checker</h2>
 
       <form class="my-3">
@@ -31,12 +31,17 @@
 
     </div>
 
-    <div class="col-12 col-md-6 border border-success">
-      <h3 class="mb-5">Diagnosis</h3>
+    <div *ngIf="showDiagnosis" class="col-12 col-md-8 border border-primary mx-auto p-3">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Diagnosis</h3>
+        <button class="btn btn-outline-primary" (click)="showDiagnosis=false; showChecker=true">Back</button>
+      </div>
+
       <div *ngFor="let diag of diagnosis">
         <h5>{{diag.Issue.Name}}</h5>
         <p>{{diag.Issue.IcdName}}</p>
       </div>
+      <button class="btn btn-primary d-block w-100">Get Help</button>
     </div>
   </div>
 </div>
