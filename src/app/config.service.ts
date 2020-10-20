@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class ConfigService {
       "Accept": "application/json, text/plain, */*"
     }
   }
-  constructor() {
+  constructor(public authService: AuthService) {
     this.token = '';
     this.language = '';
     this.format = '';
@@ -44,6 +45,19 @@ export class ConfigService {
   }
 
   getToken() {
+    try {
+      this.authService.getToken()
+        .subscribe(data => {
+          this.token = data["Token"];
+          this.setToken(this.token);
+        },
+          error => {
+            console.log('error:', error);
+          })
+
+    } catch (e) {
+      console.info('could not get token');
+    }
     return this.token;
   }
 
