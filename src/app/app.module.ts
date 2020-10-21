@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ResultsComponent } from './results/results.component';
 import { SymptomsComponent } from './symptoms/symptoms.component';
 import { ApiTestComponent } from './api-test/api-test.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +15,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     AppComponent,
     HomeComponent,
-    ResultsComponent,
     SymptomsComponent,
     ApiTestComponent
   ],
