@@ -10,3 +10,11 @@
   border: 1px solid #007bff !important;
   box-shadow: none !important;
 }
+
+a,
+a:hover,
+a:visited,
+a:focus {
+  text-decoration: none;
+  color:inherit;
+}

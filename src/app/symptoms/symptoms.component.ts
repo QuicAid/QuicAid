@@ -8,7 +8,7 @@ import { DiagnosisApiService } from '../diagnosis-api.service';
   styleUrls: ['./symptoms.component.scss']
 })
 export class SymptomsComponent implements OnInit {
-  showChecker:boolean = true;
+  showChecker: boolean = true;
   showDiagnosis: boolean = false;
   symptoms: any;
   selectedSymptom: any;
@@ -23,18 +23,24 @@ export class SymptomsComponent implements OnInit {
     this.config.setFormat("json");
     this.config.getToken();
 
-    try {
-      this.apiService.loadSymptoms()
-        .subscribe(data => {
-          console.log(data);
-          this.symptoms = data;
-        },
-          error => {
-            console.log('error:', error);
-          })
+    if (sessionStorage.getItem("QuicAid_Symptoms")) {
+      this.symptoms = JSON.parse(sessionStorage.getItem("QuicAid_Symptoms"))
+    }
+    else {
+      try {
+        this.apiService.loadSymptoms()
+          .subscribe(data => {
+            console.log(data);
+            sessionStorage.setItem("QuicAid_Symptoms", JSON.stringify(data));
+            this.symptoms = data;
+          },
+            error => {
+              console.log('error:', error);
+            })
 
-    } catch (e) {
-      console.info('could not get symptoms');
+      } catch (e) {
+        console.info('could not get symptoms');
+      }
     }
   }
 
@@ -48,11 +54,11 @@ export class SymptomsComponent implements OnInit {
     this.apiService.loadDiagnosis(this.selectedSymptom, this.gender, this.yearOfBirth).subscribe(
       data => {
 
-        if(data) {
-        console.log(data);
-        this.diagnosis = data;
-        this.showChecker = false;
-        this.showDiagnosis = true;
+        if (data) {
+          console.log(data);
+          this.diagnosis = data;
+          this.showChecker = false;
+          this.showDiagnosis = true;
         }
         else {
           console.error("Failed to get Diagnosis")
