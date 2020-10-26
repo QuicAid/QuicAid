@@ -1,7 +1,31 @@
-.ui-button {
+button{
   height: 18rem;
   width: 100%;
-  border-radius: 15px;
+  border-radius: 25px;
   box-shadow: 0.25rem 1rem 1.25rem rgba(0, 0, 0, 0.1);
-  font-size:2rem;
+  font-size: 2rem;
+  font-weight:bold;
+  color:#fff;
+}
+.btn-1 {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/assets/images/doctor.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-out;
+}
+
+.btn-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/assets/images/emblem.png");
+  background-color:#fff;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-out;
+}
+.btn-1:hover, .btn-2:hover{
+  background:rgb(19, 122, 201);
+  color:white
 }
