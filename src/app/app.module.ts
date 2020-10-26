@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,9 +24,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCegNAyGJP8_cxjBgu9pOyyHss1ni9Rrt0'
-    })
 
   ],
   providers: [],
