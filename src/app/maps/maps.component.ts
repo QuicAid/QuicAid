@@ -38,8 +38,8 @@ export class MapsComponent implements OnInit {
           lng: x.coords.longitude
         },
         label: {
-          color: "blue",
-          text: "Marker Label"
+          color: "white",
+          text: "You"
         },
         title: "Marker Title",
         info: "Marker info",
@@ -49,25 +49,9 @@ export class MapsComponent implements OnInit {
       });
     });
   }
+
   openInfo(marker: MapMarker, info) {
     this.infoContent = info;
     this.info.open(marker);
-  }
-  addMarker() {
-    this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10
-      },
-      label: {
-        color: "red",
-        text: "Marker label " + (this.markers.length + 1)
-      },
-      title: "Marker title " + (this.markers.length + 1),
-      info: "Marker info " + (this.markers.length + 1),
-      options: {
-        animation: google.maps.Animation.BOUNCE
-      }
-    });
   }
 }
