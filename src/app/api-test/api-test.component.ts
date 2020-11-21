@@ -75,7 +75,6 @@ export class ApiTestComponent implements OnInit {
 
   constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
     this.config.setLanguage("en-gb");
-    this.config.setFormat("json");
   }
 
   changeLanguage(value): void {

@@ -10,7 +10,7 @@ export class ConfigService {
   public mainURL: string = "https://sandbox-healthservice.priaid.ch";
   public token: string;
   public language: string;
-  public format: string;
+  public format: string = "json";
   public symptoms: string;
   public config_info: any = {
     "method": "Get",

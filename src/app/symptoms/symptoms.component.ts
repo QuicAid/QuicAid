@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigService } from '../config.service';
 import { DiagnosisApiService } from '../diagnosis-api.service';
 
 @Component({
@@ -18,30 +17,7 @@ export class SymptomsComponent implements OnInit {
     value: ''
   }
 
-  constructor(public apiService: DiagnosisApiService, public config: ConfigService) {
-    this.config.setLanguage("en-gb");
-    this.config.setFormat("json");
-    this.config.getToken();
-
-    if (sessionStorage.getItem("QuicAid_Symptoms")) {
-      this.symptoms = JSON.parse(sessionStorage.getItem("QuicAid_Symptoms"))
-    }
-    else {
-      try {
-        this.apiService.loadSymptoms()
-          .subscribe(data => {
-            console.log(data);
-            sessionStorage.setItem("QuicAid_Symptoms", JSON.stringify(data));
-            this.symptoms = data;
-          },
-            error => {
-              console.log('error:', error);
-            })
-
-      } catch (e) {
-        console.info('could not get symptoms');
-      }
-    }
+  constructor(public apiService: DiagnosisApiService) {
   }
 
   saveSymptom(symptom): void {
@@ -68,6 +44,23 @@ export class SymptomsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (sessionStorage.getItem("QuicAid_Symptoms")) {
+      this.symptoms = JSON.parse(sessionStorage.getItem("QuicAid_Symptoms"))
+    } else {
+      try {
+        this.apiService.loadSymptoms()
+          .subscribe(data => {
+            console.log(data);
+            sessionStorage.setItem("QuicAid_Symptoms", JSON.stringify(data));
+            this.symptoms = data;
+          },
+            error => {
+              console.log('error fetching symptoms list:', error);
+            })
+      } catch (e) {
+        console.info('error fetching symptoms list:', e);
+      }
+    }
   }
 
 }
